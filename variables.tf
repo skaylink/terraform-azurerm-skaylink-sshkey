@@ -31,7 +31,7 @@ variable "key_vault_id" {
 }
 
 variable "expiry_date" {
-  type = number
+  type        = number
   description = "The expiration time of the secret, in years, for example 1"
-  default = 3
+  default     = 3
 }
