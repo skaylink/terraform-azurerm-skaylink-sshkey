@@ -29,3 +29,9 @@ variable "environment_name" {
 variable "key_vault_id" {
   description = "The ID of the key vault the keypair will be saved to"
 }
+
+variable "expiry_date" {
+  type = number
+  description = "The expiration time of the secret, in years, for example 1"
+  default = 3
+}
