@@ -15,3 +15,8 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 # For questions and contributions please contact info@iq3cloud.com
+
+output "ssh_public_key" {
+  # Only output a generated ssh public key
+  value = tls_private_key.ssh.public_key_openssh
+}

@@ -15,14 +15,33 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 # For questions and contributions please contact info@iq3cloud.com
-resource "azurerm_resource_group" "resourcegroup" {
-  name     = var.name
-  location = var.location
+
+provider "azurerm" {
+  features {}
+}
+
+resource "tls_private_key" "ssh" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+resource "azurerm_key_vault_secret" "private_key" {
+  name         = "${var.use_case}-${var.environment_name}-ssh-private-key"
+  value        = tls_private_key.ssh.private_key_pem
+  key_vault_id = var.key_vault_id
+  content_type = "SSH PRIVATE KEY"
   tags = {
-    customTag1 = var.customTag1
-    customTag2 = var.customTag2
-    customTag3 = var.customTag3
-    customTag4 = var.customTag4
-    customTag5 = var.customTag5
+    environment = var.environment_name
+  }
+}
+
+resource "azurerm_key_vault_secret" "public_key" {
+  name         = "${var.use_case}-${var.environment_name}-ssh-public-key"
+  value        = tls_private_key.ssh.public_key_openssh
+  content_type = "SSH PUBLIC KEY"
+  key_vault_id = var.key_vault_id
+
+  tags = {
+    environment = var.environment_name
   }
 }

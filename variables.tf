@@ -16,38 +16,16 @@
 
 # For questions and contributions please contact info@iq3cloud.com
 
-variable "name" {
+variable "use_case" {
   type        = string
-  description = "The name of the resource group you are deploying"
+  description = "The use case for the keypair, for example aks or vms"
 }
 
-variable "location" {
+variable "environment_name" {
   type        = string
-  description = "The location of the resource group, defaults to west Europe"
-  default     = "westeurope"
+  description = "The environment the keypair will be used in, for example dev"
 }
 
-variable "customTag1" {
-  type        = string
-  description = "the first customTag"
-}
-
-variable "customTag2" {
-  type        = string
-  description = "the second customTag"
-}
-
-variable "customTag3" {
-  type        = string
-  description = "the third customTag"
-}
-
-variable "customTag4" {
-  type        = string
-  description = "the fourth customTag"
-}
-
-variable "customTag5" {
-  type        = string
-  description = "the fifth customTag"
+variable "key_vault_id" {
+  description = "The ID of the key vault the keypair will be saved to"
 }

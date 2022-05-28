@@ -15,3 +15,8 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 # For questions and contributions please contact info@iq3cloud.com
+
+data "azurerm_key_vault" "kv" {
+  name                = "mlo-test-kv"
+  resource_group_name = "rg-assets"
+}
