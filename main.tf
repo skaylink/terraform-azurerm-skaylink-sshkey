@@ -27,10 +27,6 @@ locals {
   time_to_expiry = "${local.formatted_time}T00:00:00+00:00"
 }
 
-provider "azurerm" {
-  features {}
-}
-
 resource "tls_private_key" "ssh" {
   algorithm = "RSA"
   rsa_bits  = 4096
