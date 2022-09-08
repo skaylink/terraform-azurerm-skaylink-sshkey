@@ -41,6 +41,12 @@ resource "azurerm_key_vault_secret" "private_key" {
   tags = {
     environment = var.environment_name
   }
+
+  lifecycle {
+    ignore_changes = [
+      expiration_date
+    ]
+  }
 }
 
 resource "azurerm_key_vault_secret" "public_key" {
@@ -51,5 +57,11 @@ resource "azurerm_key_vault_secret" "public_key" {
   key_vault_id    = var.key_vault_id
   tags = {
     environment = var.environment_name
+  }
+
+  lifecycle {
+    ignore_changes = [
+      expiration_date
+    ]
   }
 }
